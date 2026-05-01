@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CSV Dashboard</p>
+        <h1>Membership Plan Overview</h1>
+        <p class="hero-copy">
+          Tracks annual, lifetime, and other membership plans from
+          <code>test report.csv</code> using substring matching on
+          <code>active_membership_plan_type_name</code>.
+        </p>
+      </div>
+      <div class="hero-meta">
+        <span id="row-count">0 rows loaded</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="kpi-grid">
+        <article class="kpi-card active-card">
+          <p>Total Active Memberships</p>
+          <h2 id="active-count">0</h2>
+          <span>All values containing "annual"</span>
+        </article>
+        <article class="kpi-card lifetime-card">
+          <p>Total Lifetime Memberships</p>
+          <h2 id="lifetime-count">0</h2>
+          <span>All values containing "lifetime"</span>
+        </article>
+      </section>
+
+      <section class="chart-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <h3>Active vs Lifetime</h3>
+            <p>Pie chart from aggregated totals</p>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h3>Membership Type Counts</h3>
+            <p>Bar chart for Active, Lifetime, and Other</p>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="barChart"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-heading">
+          <h3>Membership Data</h3>
+          <p>Original CSV columns plus computed <code>membership_type</code></p>
+        </div>
+        <div id="table-container" class="table-container"></div>
+      </section>
+
+      <section id="error-banner" class="error-banner hidden" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
